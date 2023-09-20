@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useUsers } from "./useUsers";
 import Spinner from "../../ui/Spinner";
 import { Toaster } from "react-hot-toast";
 import { useUpdatePoints } from "./useUpdatePoints";
 import { useDeleteUser } from "./useDeleteuser";
+import { getUser } from "../../Services/apiAuth";
+import { useUser } from "../Auth/useUser";
 
 const Dashboard = () => {
   const { students_info, isLoading } = useUsers();
   const { updatePoints, isUpdating } = useUpdatePoints();
   const { deleteUser, isDeleting } = useDeleteUser();
+  const { user } = useUser();
   if (isLoading) return <Spinner />;
-  console.log(students_info);
+  console.log(user);
 
   function handleUpdate(id, pts) {
     const updatedPoints = pts - 5;
@@ -19,9 +22,11 @@ const Dashboard = () => {
 
     updatePoints({ userId: id, value: updatedPoints });
   }
+
   return (
     <div>
       <Toaster position="top-left" reverseOrder={false} />
+      <h1>Current user: {user.email}</h1>
       <table className="table-auto">
         <thead>
           <tr>
