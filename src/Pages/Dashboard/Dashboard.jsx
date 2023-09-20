@@ -6,27 +6,30 @@ import { useUpdatePoints } from "./useUpdatePoints";
 import { useDeleteUser } from "./useDeleteuser";
 import { getUser } from "../../Services/apiAuth";
 import { useUser } from "../Auth/useUser";
+import { getUserName } from "../../Services/apiGetUsers";
+import { useUsername } from "./useUsername";
 
 const Dashboard = () => {
   const { students_info, isLoading } = useUsers();
   const { updatePoints, isUpdating } = useUpdatePoints();
   const { deleteUser, isDeleting } = useDeleteUser();
+  const { userName } = useUsername();
   const { user } = useUser();
   if (isLoading) return <Spinner />;
-  console.log(user);
 
   function handleUpdate(id, pts) {
     const updatedPoints = pts - 5;
-    console.log(id);
-    console.log(updatedPoints);
 
     updatePoints({ userId: id, value: updatedPoints });
   }
+  const currentUser = userName?.find((userObj) => userObj.user_id === user.id);
+
+  const CurrentuserName = currentUser ? currentUser.userName : "No name found";
 
   return (
     <div>
       <Toaster position="top-left" reverseOrder={false} />
-      <h1>Current user: {user.email}</h1>
+      <h1>Current user: {CurrentuserName}</h1>
       <table className="table-auto">
         <thead>
           <tr>

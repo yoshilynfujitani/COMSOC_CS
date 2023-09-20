@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./Pages/ProtectedRoute";
 import AppLayout from "./Pages/AppLayout";
 import Login from "./Pages/Auth/Login";
+import Home from "./Pages/UserPage/Home";
+import ProtectedUserRoute from "./Pages/ProtectedUserRoute";
 
 function App() {
   const queryClient = new QueryClient({
@@ -27,6 +29,16 @@ function App() {
               }
             >
               <Route path="/" element={<Dashboard />} />
+            </Route>
+            <Route
+              path="/user"
+              element={
+                <ProtectedUserRoute>
+                  <AppLayout />
+                </ProtectedUserRoute>
+              }
+            >
+              <Route path="/user/home" element={<Home />} />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>

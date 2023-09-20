@@ -32,3 +32,13 @@ export async function deleteUser(id) {
     throw new Error("Users cannot be deleted");
   }
 }
+
+export async function getUserName() {
+  let { data, error } = await supabase.from("user_bio").select("*");
+
+  if (error) {
+    throw new Error("Username cannot be retrieved");
+  }
+
+  return data;
+}
