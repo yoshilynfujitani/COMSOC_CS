@@ -1,7 +1,9 @@
 import supabase from "./supabase";
 
 export async function getUsers() {
-  let { data, error } = await supabase.from("student_info").select("*");
+  let { data, error } = await supabase
+    .from("student_info")
+    .select(`id, points, user_id, user_bio(id, userName)`);
 
   if (error) {
     throw new Error("Users cannot be fetched");

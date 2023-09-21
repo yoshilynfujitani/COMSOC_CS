@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }) => {
     function () {
       if (!isAuthenticated && !isLoading) navigate("/login");
       if (user?.id !== "9acf50e6-9112-4711-b371-64ba2bae1aec")
-        navigate("/user/home");
+        navigate("/home");
     },
     [isAuthenticated, isLoading, navigate, user]
   );

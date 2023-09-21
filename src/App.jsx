@@ -31,14 +31,13 @@ function App() {
               <Route path="/" element={<Dashboard />} />
             </Route>
             <Route
-              path="/user"
               element={
                 <ProtectedUserRoute>
                   <AppLayout />
                 </ProtectedUserRoute>
               }
             >
-              <Route path="/user/home" element={<Home />} />
+              <Route path="/home" element={<Home />} />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>

@@ -4,17 +4,15 @@ import Spinner from "../../ui/Spinner";
 import { Toaster } from "react-hot-toast";
 import { useUpdatePoints } from "./useUpdatePoints";
 import { useDeleteUser } from "./useDeleteuser";
-import { getUser } from "../../Services/apiAuth";
-import { useUser } from "../Auth/useUser";
-import { getUserName } from "../../Services/apiGetUsers";
-import { useUsername } from "./useUsername";
+
+import { useLogout } from "../Auth/useLogout";
 
 const Dashboard = () => {
   const { students_info, isLoading } = useUsers();
   const { updatePoints, isUpdating } = useUpdatePoints();
   const { deleteUser, isDeleting } = useDeleteUser();
-  const { userName } = useUsername();
-  const { user } = useUser();
+
+  const { logout } = useLogout();
   if (isLoading) return <Spinner />;
 
   function handleUpdate(id, pts) {
@@ -22,18 +20,17 @@ const Dashboard = () => {
 
     updatePoints({ userId: id, value: updatedPoints });
   }
-  const currentUser = userName?.find((userObj) => userObj.user_id === user.id);
-
-  const CurrentuserName = currentUser ? currentUser.userName : "No name found";
 
   return (
     <div>
       <Toaster position="top-left" reverseOrder={false} />
-      <h1>Current user: {CurrentuserName}</h1>
-      <table className="table-auto">
+      <h1>You are currently on Administrative Mode</h1>
+      <button onClick={logout}>Logout</button>
+      <table className="table-fixed">
         <thead>
           <tr>
             <th>User</th>
+            <th>Student Name</th>
             <th>Points</th>
             <th>Tools</th>
           </tr>
@@ -42,6 +39,7 @@ const Dashboard = () => {
           {students_info.map((stud) => (
             <tr key={stud.id}>
               <td>{stud.id}</td>
+              <td>{stud.user_bio[0].userName}</td>
               <td>{stud.points}</td>
               <td className="flex">
                 <button
