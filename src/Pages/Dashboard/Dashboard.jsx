@@ -6,6 +6,7 @@ import { useUpdatePoints } from "./useUpdatePoints";
 import { useDeleteUser } from "./useDeleteuser";
 
 import { useLogout } from "../Auth/useLogout";
+import Banner from "../../ui/Banner";
 
 const Dashboard = () => {
   const { students_info, isLoading } = useUsers();
@@ -22,9 +23,9 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center px-5">
       <Toaster position="top-left" reverseOrder={false} />
-      <h1>You are currently on Administrative Mode</h1>
+      <Banner BannerMessage={"You are currently on Administrative Mode"} />
       <button onClick={logout}>Logout</button>
       <table className="table-fixed">
         <thead>
@@ -39,14 +40,14 @@ const Dashboard = () => {
           {students_info.map((stud) => (
             <tr key={stud.id}>
               <td>{stud.id}</td>
-              <td>{stud.user_bio[0].userName}</td>
+              <td>{stud.Name}</td>
               <td>{stud.points}</td>
               <td className="flex">
                 <button
                   disabled={isUpdating}
                   onClick={() => handleUpdate(Number(stud.id), stud.points)}
                 >
-                  Minus 5 pts
+                  -5
                 </button>
                 <button
                   disabled={isDeleting}

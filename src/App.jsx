@@ -17,7 +17,7 @@ function App() {
     },
   });
   return (
-    <div className="container w-screen flex flex-col items-center">
+    <div className="">
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>

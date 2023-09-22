@@ -1,9 +1,7 @@
 import supabase from "./supabase";
 
 export async function getUsers() {
-  let { data, error } = await supabase
-    .from("student_info")
-    .select(`id, points, user_id, user_bio(id, userName)`);
+  let { data, error } = await supabase.from("student_info").select("*");
 
   if (error) {
     throw new Error("Users cannot be fetched");
@@ -33,14 +31,4 @@ export async function deleteUser(id) {
   if (error) {
     throw new Error("Users cannot be deleted");
   }
-}
-
-export async function getUserName() {
-  let { data, error } = await supabase.from("user_bio").select("*");
-
-  if (error) {
-    throw new Error("Username cannot be retrieved");
-  }
-
-  return data;
 }
