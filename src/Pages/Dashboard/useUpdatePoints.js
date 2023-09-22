@@ -8,7 +8,7 @@ export function useUpdatePoints() {
     mutationFn: ({ userId, value }) => updatePointsAPI(userId, value),
 
     onSuccess: () => {
-      toast.success("Successfully toasted!");
+      toast.success("Successfully Updated Points!");
       queryClient.invalidateQueries({ queryKey: ["students"] });
     },
     onError: (err) => {
