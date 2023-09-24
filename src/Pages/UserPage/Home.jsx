@@ -10,6 +10,7 @@ import Banner from "../../ui/Banner";
 import { GiTwoCoins } from "react-icons/gi";
 import { BiSolidCoinStack } from "react-icons/bi";
 import RewardsSection from "./RewardsSection";
+import MMSU_LOGO from "/MMSU_LOGO.png";
 
 const Home = () => {
   const { logout, isLoading } = useLogout();
@@ -33,19 +34,37 @@ const Home = () => {
   console.log();
 
   return (
-    <div className="container p-5 bg-slate-50 min-h-screen md:px-32 lg:px-52 xl:px-80">
+    <div className="container w-full  p-5  min-h-screen md:px-32 lg:px-52 xl:px-80">
       <div className="relative ">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 "></div>
-        <div className="absolute top-0 -right-8 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-0 -right-8 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-1000"></div>
         <div className="absolute -bottom-28 -left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="hidden md:block absolute -bottom-18 -right-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-3000"></div>
+        <div className="hidden md:block absolute top-56 right-64 w-96 h-96 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-3000"></div>
+
         <div className="relative">
           {" "}
-          <div className="bg-white  rounded-md p-5 shadow-lg  bg-opacity-70">
-            <div className="my-2 ">
+          <div className="relative overflow-clip bg-white  rounded-md p-5 shadow-lg  bg-opacity-70 md:min-h-[200px]">
+            <div className="absolute opacity-20 -right-12 top-8 md:-top-2">
+              <img
+                src={MMSU_LOGO}
+                alt=""
+                className="w-52 h-52 md:h-80 md:w-80"
+              />
+            </div>
+            <div className="relative my-2 ">
               <h1 className="text-2xl font-bold bg-gradient-to-b from-slate-800 to-green-700 text-transparent bg-clip-text">
                 Welcome Back! <span>{currentStud_info.Name}</span>
               </h1>
-              <h2>You are from {currentStud_info.Year_Section}</h2>
+              <p className="text-xs text-gray-400 italic">
+                As of latest records...
+              </p>
+              <h2 className="text-gray-700">
+                You are from{" "}
+                <span className="font-semibold text-black">
+                  {currentStud_info.Year_Section}
+                </span>
+              </h2>
             </div>
             <Logout />
           </div>
