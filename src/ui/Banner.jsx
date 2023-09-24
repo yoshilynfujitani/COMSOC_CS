@@ -20,7 +20,7 @@ const Banner = ({ BannerMessage, type }) => {
   return (
     <div>
       <div className={bannerType}>
-        <h1 className="flex items-center md:text-lg">
+        <h1 className="flex items-center gap-2 md:text-lg">
           <RiAdminFill />
           {BannerMessage}
         </h1>

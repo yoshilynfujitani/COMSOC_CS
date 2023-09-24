@@ -8,6 +8,7 @@ import Banner from "../../ui/Banner";
 import Table from "../../ui/Table";
 
 import { BiLogOut } from "react-icons/bi";
+import Logout from "../../ui/Logout";
 const Dashboard = () => {
   const { students_info, isLoading } = useUsers();
 
@@ -22,13 +23,7 @@ const Dashboard = () => {
         type={"Reminder"}
       />
       <div className="self-start my-2 ">
-        <button
-          onClick={logout}
-          className="transition-all flex items-center text-md gap-2 border rounded-md px-2 py-1 text-gray-600 hover:text-red-500 hover:border-red-400 "
-        >
-          <BiLogOut />
-          Logout
-        </button>
+        <Logout />
       </div>
       <h1 className="self-start text-sm text-gray-400 italic">
         Currently showing latest 50 records...
