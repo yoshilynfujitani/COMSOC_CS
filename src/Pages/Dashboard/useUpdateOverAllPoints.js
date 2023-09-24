@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateCurrentPoints as updatePointsAPI } from "../../Services/apiGetUsers";
+import { updateOverAllPoints as updatePointsAPI } from "../../Services/apiGetUsers";
 import toast from "react-hot-toast";
 
-export function useUpdatePoints() {
+export function useUpdateOverallPoints() {
   const queryClient = useQueryClient();
-  const { mutate: updatePoints, isLoading: isUpdating } = useMutation({
-    mutationFn: ({ userId, value }) => updatePointsAPI(userId, value),
+  const { mutate: updateOverallPoints, isLoading: isUpdating } = useMutation({
+    mutationFn: ({ userId, value, overallValue }) =>
+      updatePointsAPI(userId, value, overallValue),
 
     onSuccess: () => {
       toast.success("Successfully Updated Points!");
@@ -16,5 +17,5 @@ export function useUpdatePoints() {
     },
   });
 
-  return { isUpdating, updatePoints };
+  return { isUpdating, updateOverallPoints };
 }

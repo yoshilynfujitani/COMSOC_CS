@@ -10,12 +10,25 @@ export async function getUsers() {
   return data;
 }
 
-export async function updatePoints(userId, value) {
-  console.log(userId);
-  console.log(value);
+export async function updateCurrentPoints(userId, value) {
   const { data, error } = await supabase
     .from("student_info")
     .update({ points: value })
+    .eq("id", userId)
+    .select();
+
+  if (error) {
+    throw new Error("Users cannot be fetched");
+  }
+
+  return data;
+}
+
+export async function updateOverAllPoints(userId, value, overallValue) {
+  const { data, error } = await supabase
+    .from("student_info")
+    .update({ points: value, Total_Points: overallValue })
+
     .eq("id", userId)
     .select();
 
