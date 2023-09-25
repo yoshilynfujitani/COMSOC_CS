@@ -14,11 +14,14 @@ import { BsTrophyFill } from "react-icons/bs";
 
 import RewardsSection from "./RewardsSection";
 import CCIS_LOGO from "/CCIS_LOGO.webp";
+import { useUpdatePassword } from "./useUpdatePassword";
+import { Toaster } from "react-hot-toast";
 
 const Home = () => {
   const { user } = useUser();
 
   const { students_info, isLoading: Loading } = useUsers();
+  const { updatePassword, isChangingPassword } = useUpdatePassword();
 
   if (Loading) return <Spinner />;
 
@@ -38,6 +41,7 @@ const Home = () => {
   console.log(currentIndex);
   return (
     <div className="container w-full  p-5  min-h-screen md:px-32 lg:px-52 xl:px-96">
+      <Toaster position="top-left" reverseOrder={false} />
       <div className="relative ">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 "></div>
         <div className="absolute top-0 -right-8 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-1000"></div>
@@ -57,7 +61,7 @@ const Home = () => {
               />
             </div>
             <div className="relative my-2 ">
-              <h1 className="text-2xl font-bold bg-gradient-to-b from-slate-800 to-blue-700 text-transparent bg-clip-text">
+              <h1 className="text-2xl font-bold bg-gradient-to-b from-slate-800 to-blue-700 text-transparent bg-clip-text md:text-3xl">
                 Welcome Back! <span>{currentStud_info.Name}</span>
               </h1>
               <p className="text-xs text-gray-400 italic">
@@ -70,6 +74,12 @@ const Home = () => {
                 </span>
               </h2>
             </div>
+            <button
+              onClick={() => updatePassword("123qwe")}
+              disabled={isChangingPassword}
+            >
+              Update Password
+            </button>
             <Logout />
           </div>
           <h1 className="my-5 font-semibold text-blue-700 text-lg flex items-center gap-2">

@@ -16,9 +16,9 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center px-5 bg-slate-50 min-h-screen">
-      <div className="bg-white p-5 w-full shadow-lg rounded-md md:max-w-[500px] md:py-32">
+      <div className="bg-white p-5 w-full  shadow-lg rounded-md md:max-w-[500px] md:py-10">
         <div className="flex flex-col items-center justify-center my-10">
-          <img src={CCIS_LOGO} alt="" className="w-48 h-48" />
+          <img src={CCIS_LOGO} alt="" className="w-60 h-60" />
           <h1 className="text-xs text-center text-gray-400">
             College of Computing and Information Sciences
           </h1>

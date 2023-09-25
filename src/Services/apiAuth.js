@@ -36,3 +36,14 @@ export async function logout() {
     throw new Error(error.message);
   }
 }
+
+export async function updateUser(password) {
+  const { data, error } = await supabase.auth.updateUser({
+    password,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}
