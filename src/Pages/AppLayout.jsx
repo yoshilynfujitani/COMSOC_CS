@@ -8,7 +8,7 @@ const AppLayout = () => {
     <div className="flex flex-col min-h-screen  justify-between overflow-clip">
       <div className="">
         <Navbar />
-        <div className="container  w-screen flex flex-col items-center ">
+        <div className="container  w-screen flex flex-col items-center z-10">
           <Outlet />
         </div>
       </div>

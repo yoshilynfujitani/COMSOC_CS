@@ -10,14 +10,14 @@ const ProtectedUserRoute = ({ children }) => {
   useEffect(
     function () {
       if (!isAuthenticated && !isLoading) navigate("/login");
-      if (user?.id === "9acf50e6-9112-4711-b371-64ba2bae1aec") navigate("/");
+      if (user?.id === "9bd8b4de-7c56-43ea-88fa-ccabe115a401") navigate("/");
     },
     [isAuthenticated, isLoading, navigate, user]
   );
 
   if (isLoading) return <Spinner />;
 
-  if (isAuthenticated && user?.id !== "9acf50e6-9112-4711-b371-64ba2bae1aec")
+  if (isAuthenticated && user?.id !== "9bd8b4de-7c56-43ea-88fa-ccabe115a401")
     return children;
 };
 
