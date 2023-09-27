@@ -11,7 +11,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password });
+    login({ email: email + "@comsoc.com", password });
   };
 
   return (
@@ -30,10 +30,10 @@ const Login = () => {
         <div className="flex flex-col">
           {" "}
           <label htmlFor="" className="text-sm">
-            Email
+            Student Number <span className="text-slate-300">(23-000000)</span>
           </label>
           <input
-            type="email"
+            type="text"
             onChange={(e) => setEmail(e.target.value)}
             className="border rounded-md px-2 py-1"
           />
