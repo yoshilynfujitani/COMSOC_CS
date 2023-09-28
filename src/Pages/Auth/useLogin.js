@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { login as loginAPI } from "../../Services/apiAuth";
+import toast from "react-hot-toast";
 
 export function useLogin() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export function useLogin() {
       navigate("/");
     },
     onError: (err) => {
-      console.log(err);
+      toast.error(err.message);
     },
   });
 

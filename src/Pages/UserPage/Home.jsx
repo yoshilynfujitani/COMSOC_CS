@@ -20,6 +20,8 @@ import BANK_BG from "/BANK_BG.webp";
 import TROPHY_BG from "/TROPHY_BG.webp";
 import { useUpdatePassword } from "./useUpdatePassword";
 import { Toaster } from "react-hot-toast";
+import Scoreboard from "./Scoreboard";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { user } = useUser();
@@ -46,7 +48,7 @@ const Home = () => {
   return (
     <div className="container w-full  p-5  min-h-screen md:px-32 lg:px-52 xl:px-96">
       <Toaster position="top-right" reverseOrder={false} />
-      <div className="relative ">
+      <div className="relative  ">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 "></div>
         <div className="absolute top-0 -right-8 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-1000"></div>
         <div className="absolute -bottom-28 -left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -56,7 +58,12 @@ const Home = () => {
 
         <div className="relative">
           {" "}
-          <div className="relative overflow-clip bg-white  rounded-md p-5 shadow-lg   md:min-h-[200px]">
+          <motion.div
+            initial={{ y: 200 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative overflow-clip bg-white  rounded-md p-5 shadow-lg   md:min-h-[200px]"
+          >
             <div className="absolute opacity-20 -right-12 top-8 md:-top-2">
               <img
                 src={CCIS_LOGO}
@@ -93,14 +100,19 @@ const Home = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
           <h1 className="my-5 font-semibold text-blue-700 text-lg flex items-center gap-2">
             <span className="text-yellow-500">
               <ImStatsDots />{" "}
             </span>
             User Statistics
           </h1>
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-3  ">
+          <motion.div
+            initial={{ y: 200 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.75 }}
+            className="grid grid-cols-2 gap-2 md:grid-cols-3  "
+          >
             <div className="bg-white rounded-md p-5 min-h-[150px] shadow-md bg-opacity-90  relative overflow-clip">
               <div className="absolute opacity-10 -right-12 top-8 md:-top-2">
                 <img
@@ -167,9 +179,10 @@ const Home = () => {
                 More than 60% of total students
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
         <RewardsSection currentPoints={currentStud_info.points} />
+        <Scoreboard rankingData={rankingStudents} />
       </div>
     </div>
   );

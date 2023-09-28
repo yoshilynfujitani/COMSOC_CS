@@ -3,6 +3,7 @@ import { useLogin } from "./useLogin";
 
 import CCIS_LOGO from "/CCIS_LOGO.webp";
 import Banner from "../../ui/Banner";
+import { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { login, isLoading } = useLogin();
@@ -16,6 +17,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center px-5 bg-slate-50 min-h-screen">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="bg-white p-5 w-full  shadow-lg rounded-md md:max-w-[500px] md:py-10">
         <div className="flex flex-col items-center justify-center my-10">
           <img src={CCIS_LOGO} alt="" className="w-60 h-60" />
