@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUser } from "../Auth/useUser";
 
 import { useLogout } from "../Auth/useLogout";
@@ -21,13 +21,19 @@ import TROPHY_BG from "/TROPHY_BG.webp";
 import { useUpdatePassword } from "./useUpdatePassword";
 import { Toaster } from "react-hot-toast";
 import Scoreboard from "./Scoreboard";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import Modal from "../../components/Modal";
 
 const Home = () => {
   const { user } = useUser();
 
   const { students_info, isLoading: Loading } = useUsers();
-  const { updatePassword, isChangingPassword } = useUpdatePassword();
+
+  const [openModal, setOpenModal] = useState(false);
+
+  function handleCloseModal() {
+    setOpenModal((currentVal) => !currentVal);
+  }
 
   if (Loading) return <Spinner />;
 
@@ -90,14 +96,24 @@ const Home = () => {
               </div>
               <div className="flex items-center gap-2 mt-5">
                 <Logout />
-                <button
+                {/* <button
                   className="border rounded-md px-2 py-1 flex items-center gap-2 text-gray-600 bg-white hover:text-yellow-500 hover:border-yellow-400"
                   onClick={() => updatePassword("123qwe")}
                   disabled={isChangingPassword}
                 >
                   <BiSolidKey />
                   Update Password
+                </button> */}
+                <button
+                  className="border rounded-md px-2 py-1 flex items-center gap-2 text-gray-600 bg-white hover:text-yellow-500 hover:border-yellow-400"
+                  onClick={() => setOpenModal((currentVal) => !currentVal)}
+                >
+                  <BiSolidKey />
+                  Update Password
                 </button>
+                <AnimatePresence>
+                  <Modal visible={openModal} onClose={handleCloseModal} />
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>
@@ -111,7 +127,7 @@ const Home = () => {
             initial={{ y: 200 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.75 }}
-            className="grid grid-cols-2 gap-2 md:grid-cols-3  "
+            className="grid grid-cols-2 gap-2 md:grid-cols-3 z-10 "
           >
             <div className="bg-white rounded-md p-5 min-h-[150px] shadow-md bg-opacity-90  relative overflow-clip">
               <div className="absolute opacity-10 -right-12 top-8 md:-top-2">
