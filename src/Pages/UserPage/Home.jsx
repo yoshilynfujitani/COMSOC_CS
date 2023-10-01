@@ -25,6 +25,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "../../components/Modal";
 
 const Home = () => {
+  const { updatePassword, isChangingPassword } = useUpdatePassword();
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [error, setError] = useState(false);
   const { user } = useUser();
 
   const { students_info, isLoading: Loading } = useUsers();
@@ -33,6 +37,11 @@ const Home = () => {
 
   function handleCloseModal() {
     setOpenModal((currentVal) => !currentVal);
+  }
+  function handleUpdatePassword(passwords) {
+    if (password !== password2) return setError(true);
+    updatePassword(passwords);
+    if (!isChangingPassword) return onClose();
   }
 
   if (Loading) return <Spinner />;
@@ -112,7 +121,40 @@ const Home = () => {
                   Update Password
                 </button>
                 <AnimatePresence>
-                  <Modal visible={openModal} onClose={handleCloseModal} />
+                  <Modal visible={openModal} onClose={handleCloseModal}>
+                    {" "}
+                    <div className="text-center">
+                      <h1 className="text-sm py-1 px-2 bg-red-200 rounded-md text-red-700 font-semibold my-2">
+                        You will now permanently update your password!
+                      </h1>
+
+                      <h2>Enter New Password</h2>
+                      <input
+                        type="password"
+                        className="border rounded-md px-2 py-1"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <h2>Confirm Password</h2>
+                      <input
+                        type="password"
+                        className="border rounded-md px-2 py-1"
+                        onChange={(e) => setPassword2(e.target.value)}
+                      />
+
+                      <button
+                        className="px-2 py-1 bg-gray-700 text-white rounded my-2"
+                        onClick={() => handleUpdatePassword(password)}
+                      >
+                        Update Password
+                      </button>
+                      <div
+                        className="cursor-pointer"
+                        onClick={handleCloseModal}
+                      >
+                        Close
+                      </div>
+                    </div>
+                  </Modal>
                 </AnimatePresence>
               </div>
             </div>

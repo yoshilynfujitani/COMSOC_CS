@@ -3,7 +3,7 @@ import CCIS_LOGO from "/CCIS_LOGO.webp";
 import { BsFacebook } from "react-icons/bs";
 const Footer = () => {
   return (
-    <div className=" bg-white   flex items-center justify-center shadow-sm relative z-20 py-2">
+    <div className=" bg-white   flex items-center justify-center shadow-sm relative z-10 py-2">
       <div className="flex justify-start w-full flex-col px-5">
         <div className="flex items-center       ">
           <img src={CCIS_LOGO} alt="" className="w-12 h-12 " />
